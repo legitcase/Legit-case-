@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Legit Case</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800&family=Barlow+Condensed:wght@700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --red: #e85a5a;
+  --black: #0f1822;
+  --blue: #aacae6;
+  --yellow: #e3e836;
+  --white: #ffffff;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+html { height: 100%; }
+body { height: 100%; font-family: 'Barlow', sans-serif; background: var(--black); color: var(--white); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+
+/* ═══════════════════════════════
+   PAGE SYSTEM
+═══════════════════════════════ */
+.page { display: none; min-height: 100vh; flex-direction: column; }
+.page.active { display: flex; }
+
+/* ═══════════════════════════════
+   HOME
+═══════════════════════════════ */
+.home-hero {
+  background: var(--black);
+  padding: 3rem 1.5rem 2rem;
+  text-align: center;
+}
+.home-logo {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-size: clamp(3rem, 14vw, 5.5rem);
+  letter-spacing: 0.04em;
+  line-height: 0.9;
+  color: var(--white);
+}
+.home-logo .red { color: var(--red); }
+.home-tagline {
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-top: 0.6rem;
+  opacity: 0.8;
+}
+.home-panels { flex: 1; display: flex; flex-direction: column; }
+.home-panel {
+  flex: 1;
+  min-height: 130px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.75rem 1.75rem;
+  cursor: pointer;
+  border-top: 1px solid rgba(255,255,255,0.07);
+  transition: filter 0.15s;
+  -webkit-user-select: none;
+  user-select: none;
+}
+.home-panel:active { filter: brightness(0.85); }
+.hp-red { background: var(--red); }
+.hp-dark { background: #162232; }
+.hp-navy { background: #172435; }
+.hp-left {}
+.hp-name {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-size: clamp(1.8rem, 7vw, 2.6rem);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+.hp-red .hp-name { color: var(--black); }
+.hp-desc {
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-top: 0.25rem;
+  opacity: 0.55;
+}
+.hp-red .hp-desc { color: var(--black); }
+.hp-right { display: flex; align-items: center; gap: 0.75rem; }
+.hp-emoji { font-size: 2.2rem; opacity: 0.5; }
+.hp-arrow {
+  font-size: 2rem;
+  font-weight: 300;
+  opacity: 0.5;
+  line-height: 1;
+}
+.hp-red .hp-arrow { color: var(--black); }
+
+/* ═══════════════════════════════
+   SHARED PAGE HEADER
+═══════════════════════════════ */
+.page-header {
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  background: #0a1118;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  padding: 0.9rem 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.back-btn {
+  background: rgba(255,255,255,0.08);
+  border: none;
+  color: var(--white);
+  font-family: 'Barlow', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.5rem 0.9rem;
+  border-radius: 8px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s;
+}
+.back-btn:active { background: rgba(255,255,255,0.14); }
+.page-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800;
+  font-size: 1.3rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* ═══════════════════════════════
+   RULES
+═══════════════════════════════ */
+#rules-page { background: #111b27; }
+.rules-nav {
+  display: flex;
+  overflow-x: auto;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  scrollbar-width: none;
+  background: #0d1720;
+}
+.rules-nav::-webkit-scrollbar { display: none; }
+.rnav-btn {
+  flex-shrink: 0;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: rgba(255,255,255,0.4);
+  font-family: 'Barlow', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  padding: 0.9rem 1rem;
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s;
+  white-space: nowrap;
+}
+.rnav-btn.active { color: var(--red); border-bottom-color: var(--red); }
+.rules-body { flex: 1; overflow-y: auto; }
+.rsec { display: none; padding: 1.4rem 1.2rem 2rem; }
+.rsec.on { display: block; }
+.rsec-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-size: 1.25rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 0.9rem;
+}
+.rp { font-size: 0.88rem; line-height: 1.75; color: rgba(255,255,255,0.68); margin-bottom: 0.8rem; }
+.rcard {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 12px;
+  padding: 0.9rem 1rem;
+  margin-bottom: 0.65rem;
+}
+.rcard-t { font-weight: 700; font-size: 0.88rem; color: var(--white); margin-bottom: 0.25rem; }
+.rcard-b { font-size: 0.8rem; color: rgba(255,255,255,0.55); line-height: 1.6; }
+.role-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.55rem; margin-bottom: 0.75rem; }
+.role-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 0.85rem 0.75rem; text-align: center; }
+.role-name { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 0.95rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--white); margin-bottom: 0.3rem; }
+.role-desc { font-size: 0.72rem; color: rgba(255,255,255,0.5); line-height: 1.5; }
+.rtag { display: inline-block; font-size: 0.6rem; font-weight: 800; letter-spacing: 0.07em; text-transform: uppercase; padding: 2px 8px; border-radius: 20px; margin-top: 0.4rem; }
+.rtag-req { background: var(--red); color: var(--white); }
+.rtag-opt { background: rgba(170,202,230,0.15); color: var(--blue); }
+.steps { list-style: none; }
+.step { display: flex; gap: 0.85rem; padding: 0.85rem 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+.step:last-child { border-bottom: none; }
+.step-n { min-width: 24px; height: 24px; border-radius: 50%; background: var(--red); display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 800; color: var(--white); flex-shrink: 0; margin-top: 1px; }
+.step-t { font-weight: 700; font-size: 0.88rem; color: var(--white); margin-bottom: 2px; }
+.step-b { font-size: 0.78rem; color: rgba(255,255,255,0.55); line-height: 1.6; }
+.step-note { margin-top: 0.4rem; font-size: 0.72rem; color: rgba(170,202,230,0.75); background: rgba(170,202,230,0.07); border-left: 2px solid var(--blue); padding: 0.3rem 0.6rem; border-radius: 0 5px 5px 0; }
+.opt-badge { display: inline-block; font-size: 0.58rem; font-weight: 800; letter-spacing: 0.07em; text-transform: uppercase; padding: 1px 6px; border-radius: 20px; background: rgba(227,232,54,0.15); color: var(--yellow); margin-left: 6px; vertical-align: middle; }
+.mat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.55rem; }
+.mat-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 0.85rem 0.75rem; text-align: center; }
+.mat-name { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 0.9rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--white); margin-bottom: 0.25rem; }
+.mat-desc { font-size: 0.72rem; color: rgba(255,255,255,0.5); line-height: 1.5; }
+.die-row { display: flex; gap: 6px; margin: 0.7rem 0; }
+.die-pip { width: 40px; height: 40px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.12); background: rgba(255,255,255,0.06); display: flex; align-items: center; justify-content: center; font-size: 1rem; font-weight: 800; color: rgba(255,255,255,0.35); }
+.die-pip.win { background: rgba(232,90,90,0.18); border-color: rgba(232,90,90,0.5); color: var(--red); }
+.die-legend { font-size: 0.76rem; color: rgba(255,255,255,0.45); line-height: 1.65; }
+.chaos-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.55rem; }
+.chaos-mini { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 0.8rem 0.75rem; }
+.chaos-mini-name { font-weight: 700; font-size: 0.82rem; color: var(--red); margin-bottom: 0.2rem; }
+.chaos-mini-body { font-size: 0.72rem; color: rgba(255,255,255,0.5); line-height: 1.5; }
+.judge-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 0.55rem; margin-bottom: 0.7rem; }
+.jcol-t { font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 0.45rem; }
+.jlist { list-style: none; }
+.jlist li { font-size: 0.77rem; color: rgba(255,255,255,0.6); padding: 0.3rem 0; border-bottom: 1px solid rgba(255,255,255,0.06); line-height: 1.4; }
+.jlist li:last-child { border-bottom: none; }
+.sd-box { background: rgba(232,90,90,0.09); border: 1px solid rgba(232,90,90,0.28); border-radius: 10px; padding: 0.85rem; margin-top: 0.7rem; }
+.sd-title { font-weight: 800; font-size: 0.82rem; color: var(--red); margin-bottom: 0.25rem; letter-spacing: 0.03em; }
+.sd-body { font-size: 0.78rem; color: rgba(255,255,255,0.55); line-height: 1.65; }
+.flow-pills { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 0.9rem; align-items: center; }
+.flow-pill { font-size: 0.68rem; padding: 3px 9px; border-radius: 999px; background: rgba(255,255,255,0.07); color: rgba(255,255,255,0.65); font-weight: 600; }
+.flow-arr { font-size: 0.68rem; color: rgba(255,255,255,0.25); }
+.qr-box { background: rgba(170,202,230,0.06); border: 1px solid rgba(170,202,230,0.18); border-radius: 10px; padding: 0.85rem; margin-bottom: 0.7rem; }
+.qr-title { font-weight: 700; font-size: 0.82rem; color: var(--blue); margin-bottom: 0.25rem; }
+.qr-body { font-size: 0.78rem; color: rgba(255,255,255,0.55); line-height: 1.65; }
+.note-box { font-size: 0.75rem; color: rgba(170,202,230,0.6); background: rgba(170,202,230,0.05); border-radius: 8px; padding: 0.55rem 0.75rem; line-height: 1.6; margin-top: 0.5rem; }
+
+/* ═══════════════════════════════
+   DICE
+═══════════════════════════════ */
+#dice-page { background: var(--black); }
+.dice-wrap {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 2rem 1.5rem;
+  gap: 1.5rem;
+}
+.rolls-label {
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+.roll-dots { display: flex; gap: 10px; justify-content: center; }
+.roll-dot {
+  width: 16px; height: 16px;
+  border-radius: 50%;
+  background: var(--red);
+  transition: background 0.3s, transform 0.3s;
+}
+.roll-dot.used { background: rgba(255,255,255,0.1); transform: scale(0.8); }
+
+/* The die itself */
+.die-btn {
+  width: 150px; height: 150px;
+  background: var(--white);
+  border-radius: 28px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  transition: transform 0.12s, box-shadow 0.12s;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+  -webkit-user-select: none;
+  user-select: none;
+  position: relative;
+  overflow: hidden;
+}
+.die-btn:not(.disabled):active { transform: scale(0.91); box-shadow: 0 2px 12px rgba(0,0,0,0.4); }
+.die-btn.disabled { opacity: 0.3; cursor: not-allowed; }
+.die-btn.shake { animation: shake 0.4s ease; }
+@keyframes shake {
+  0%   { transform: rotate(0deg) scale(1); }
+  15%  { transform: rotate(-14deg) scale(1.06); }
+  30%  { transform: rotate(12deg) scale(1.06); }
+  45%  { transform: rotate(-9deg) scale(1.03); }
+  60%  { transform: rotate(7deg) scale(1.02); }
+  75%  { transform: rotate(-4deg) scale(1.01); }
+  100% { transform: rotate(0deg) scale(1); }
+}
+.die-face-symbol {
+  font-size: 3.5rem;
+  line-height: 1;
+  color: var(--black);
+  font-weight: 900;
+  transition: opacity 0.15s;
+}
+.die-face-text {
+  font-size: 0.6rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(0,0,0,0.35);
+}
+
+.cooldown-wrap { text-align: center; min-height: 40px; display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.cooldown-track { width: 160px; height: 4px; background: rgba(255,255,255,0.08); border-radius: 2px; overflow: hidden; }
+.cooldown-fill { height: 100%; background: var(--red); border-radius: 2px; width: 0%; }
+.cooldown-txt { font-size: 0.72rem; letter-spacing: 0.08em; color: rgba(255,255,255,0.35); min-height: 1rem; }
+
+.dice-result {
+  text-align: center;
+  min-height: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+}
+.dice-result-main {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-size: 1.8rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.res-empty { color: rgba(255,255,255,0.12); }
+.res-no { color: rgba(255,255,255,0.3); }
+.res-yes { color: var(--red); }
+.go-chaos-btn {
+  background: var(--red);
+  color: var(--white);
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-size: 1.05rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 12px;
+  padding: 0.8rem 1.8rem;
+  cursor: pointer;
+  box-shadow: 0 4px 18px rgba(232,90,90,0.4);
+  transition: opacity 0.15s, transform 0.12s;
+}
+.go-chaos-btn:active { opacity: 0.85; transform: scale(0.97); }
+.new-round-btn {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: rgba(255,255,255,0.4);
+  font-family: 'Barlow', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  padding: 0.55rem 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.new-round-btn:active { background: rgba(255,255,255,0.1); }
+
+/* ═══════════════════════════════
+   CHAOS CARDS
+═══════════════════════════════ */
+#chaos-page { background: var(--black); }
+.chaos-wrap {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.5rem 1.25rem 2.5rem;
+  gap: 1.2rem;
+}
+.who-label {
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+}
+.side-btns { display: flex; gap: 0.5rem; width: 100%; max-width: 340px; }
+.side-btn {
+  flex: 1;
+  padding: 0.8rem 0.5rem;
+  border: 2px solid rgba(255,255,255,0.1);
+  border-radius: 10px;
+  background: transparent;
+  color: rgba(255,255,255,0.35);
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-size: 1rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.side-btn.on { border-color: var(--red); color: var(--white); background: rgba(232,90,90,0.1); }
+.side-btn:active { opacity: 0.8; }
+
+.deck-status {
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+  text-align: center;
+}
+
+/* Card — Safari-safe flip using opacity swap instead of 3D transform */
+.card-scene {
+  width: 220px;
+  height: 320px;
+  cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
+  position: relative;
+}
+.card-scene.empty { opacity: 0.25; pointer-events: none; }
+.card-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+.c-face {
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  overflow: hidden;
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+/* Back face */
+.c-back {
+  background: var(--red);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  opacity: 1;
+  transform: scale(1);
+  z-index: 2;
+}
+.c-back.hidden {
+  opacity: 0;
+  transform: scale(0.92);
+  z-index: 1;
+  pointer-events: none;
+}
+.c-back-stripes {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    45deg,
+    transparent 0px,
+    transparent 12px,
+    rgba(0,0,0,0.07) 12px,
+    rgba(0,0,0,0.07) 24px
+  );
+  border-radius: 20px;
+}
+.c-back-inner { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; gap: 0.4rem; }
+.c-back-gavel { font-size: 3rem; }
+.c-back-logo {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-size: 1.8rem;
+  letter-spacing: 0.1em;
+  color: var(--black);
+  line-height: 1;
+  text-align: center;
+}
+.c-back-tape {
+  background: var(--black);
+  color: var(--white);
+  font-size: 0.58rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.3rem 1.5rem;
+  transform: rotate(-6deg);
+  margin-top: 0.3rem;
+  white-space: nowrap;
+}
+.c-back-border {
+  position: absolute;
+  inset: 6px;
+  border: 2px solid rgba(0,0,0,0.18);
+  border-radius: 16px;
+  pointer-events: none;
+}
+
+/* Front face */
+.c-front {
+  background: var(--white);
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  transform: scale(0.92);
+  z-index: 1;
+}
+.c-front.visible {
+  opacity: 1;
+  transform: scale(1);
+  z-index: 2;
+}
+.c-front-stripes {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    45deg,
+    transparent 0px,
+    transparent 14px,
+    rgba(232,90,90,0.05) 14px,
+    rgba(232,90,90,0.05) 28px
+  );
+  border-radius: 20px;
+  pointer-events: none;
+}
+.c-front-border {
+  position: absolute;
+  inset: 6px;
+  border: 3px solid var(--black);
+  border-radius: 15px;
+  pointer-events: none;
+  z-index: 2;
+}
+.c-header {
+  background: var(--black);
+  padding: 0.7rem 1rem;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+.c-chaos-label {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-size: 1.1rem;
+  letter-spacing: 0.15em;
+  color: var(--white);
+}
+.c-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.2rem 1rem;
+  position: relative;
+  z-index: 1;
+  gap: 0.6rem;
+}
+.c-name {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-size: 1.45rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--black);
+  text-align: center;
+  line-height: 1.1;
+}
+.c-effect {
+  font-size: 0.76rem;
+  color: #2a2a2a;
+  line-height: 1.65;
+  text-align: center;
+}
+
+.cards-left {
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.25);
+  text-align: center;
+}
+.draw-next-btn {
+  background: var(--red);
+  color: var(--white);
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-size: 1rem;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 12px;
+  padding: 0.75rem 1.8rem;
+  cursor: pointer;
+  display: none;
+  box-shadow: 0 4px 18px rgba(232,90,90,0.35);
+  transition: opacity 0.15s, transform 0.12s;
+}
+.draw-next-btn:active { opacity: 0.85; transform: scale(0.97); }
+.reset-decks-btn {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.09);
+  color: rgba(255,255,255,0.35);
+  font-family: 'Barlow', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  padding: 0.5rem 1.1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.reset-decks-btn:active { background: rgba(255,255,255,0.1); }
+.chaos-sub { font-size: 0.7rem; color: rgba(255,255,255,0.22); text-align: center; line-height: 1.6; }
+</style>
+</head>
+<body>
+
+<!-- ═══════════ HOME ═══════════ -->
+<div id="home" class="page active">
+  <div class="home-hero">
+    <div class="home-logo">LEGIT<span class="red">CA</span>SE</div>
+    <div class="home-tagline">The courtroom role-playing game</div>
+  </div>
+  <div class="home-panels">
+    <div class="home-panel hp-red" onclick="goTo('rules-page')">
+      <div class="hp-left">
+        <div class="hp-name">Rules</div>
+        <div class="hp-desc">Full rulebook</div>
+      </div>
+      <div class="hp-right">
+        <div class="hp-emoji">⚖️</div>
+        <div class="hp-arrow">›</div>
+      </div>
+    </div>
+    <div class="home-panel hp-dark" onclick="goTo('dice-page')">
+      <div class="hp-left">
+        <div class="hp-name">Roll the Dice</div>
+        <div class="hp-desc">Earn a chaos card</div>
+      </div>
+      <div class="hp-right">
+        <div class="hp-emoji">🎲</div>
+        <div class="hp-arrow" style="color:rgba(255,255,255,0.35);">›</div>
+      </div>
+    </div>
+    <div class="home-panel hp-navy" onclick="goTo('chaos-page')">
+      <div class="hp-left">
+        <div class="hp-name">Chaos Cards</div>
+        <div class="hp-desc">Draw your card</div>
+      </div>
+      <div class="hp-right">
+        <div class="hp-emoji">🃏</div>
+        <div class="hp-arrow" style="color:rgba(255,255,255,0.35);">›</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ RULES ═══════════ -->
+<div id="rules-page" class="page">
+  <div class="page-header">
+    <button class="back-btn" onclick="goTo('home')">← Back</button>
+    <div class="page-title">Rulebook</div>
+  </div>
+  <div class="rules-nav">
+    <button class="rnav-btn active" onclick="showR('r0',this)">Overview</button>
+    <button class="rnav-btn" onclick="showR('r1',this)">Roles</button>
+    <button class="rnav-btn" onclick="showR('r2',this)">Materials</button>
+    <button class="rnav-btn" onclick="showR('r3',this)">Gameplay</button>
+    <button class="rnav-btn" onclick="showR('r4',this)">Chaos Cards</button>
+    <button class="rnav-btn" onclick="showR('r5',this)">Judging</button>
+  </div>
+  <div class="rules-body">
+
+    <div id="r0" class="rsec on">
+      <div class="rsec-title">What is Legit Case?</div>
+      <p class="rp">Legit Case is a courtroom role-playing game where opposing parties argue a fictional legal dispute. A judge evaluates both arguments and decides who presented the stronger, more persuasive case.</p>
+      <p class="rp">Each case is self-contained and focuses on reasoning, persuasion and strategy, not real legal knowledge. Real legal rules may only be applied if all three core players unanimously agree to adopt the same legal system before the case begins.</p>
+      <div class="flow-pills">
+        <span class="flow-pill">Draw case</span><span class="flow-arr">›</span>
+        <span class="flow-pill">Prepare</span><span class="flow-arr">›</span>
+        <span class="flow-pill">Argue</span><span class="flow-arr">›</span>
+        <span class="flow-pill">Question round</span><span class="flow-arr">›</span>
+        <span class="flow-pill">Verdict</span>
+      </div>
+      <div class="note-box">All names, places and details in every case are entirely fictional. Any resemblance to real people or real events is purely coincidental.</div>
+    </div>
+
+    <div id="r1" class="rsec">
+      <div class="rsec-title">Roles</div>
+      <div class="role-grid">
+        <div class="role-card"><div class="role-name">Judge</div><div class="role-desc">Listens to both sides, asks questions in the Question Round, then delivers a verdict.</div><span class="rtag rtag-req">Required</span></div>
+        <div class="role-card"><div class="role-name">Claimant</div><div class="role-desc">Brings the case to court. Argues first and sets the scene.</div><span class="rtag rtag-req">Required</span></div>
+        <div class="role-card"><div class="role-name">Defendant</div><div class="role-desc">The party the case is brought against. Argues second and must counter the claimant.</div><span class="rtag rtag-req">Required</span></div>
+        <div class="role-card"><div class="role-name">Witnesses</div><div class="role-desc">Provide testimony for whichever side called them. Played by extra players or by the claimant and defendant themselves.</div><span class="rtag rtag-opt">Optional</span></div>
+      </div>
+      <div class="rcard"><div class="rcard-t">Witnesses without extra players</div><div class="rcard-b">If no additional players are available, the claimant and defendant may each assume the role of their own witnesses, stepping into that role briefly during their argument phase if they choose to call one.</div></div>
+    </div>
+
+    <div id="r2" class="rsec">
+      <div class="rsec-title">Components</div>
+      <div class="mat-grid">
+        <div class="mat-card"><div class="mat-name">Case Card</div><div class="mat-desc">One per case. The fictional dispute scenario shared by all players as context.</div></div>
+        <div class="mat-card"><div class="mat-name">Fact Card</div><div class="mat-desc">One per side per case. Each side's facts are different and support their own argument.</div></div>
+        <div class="mat-card"><div class="mat-name">Witness List</div><div class="mat-desc">One per side. Lists potential witnesses that player may call to testify.</div></div>
+        <div class="mat-card"><div class="mat-name">Chaos Cards</div><div class="mat-desc">6 disruptive effects earned by rolling a die during the opponent's argument phase.</div></div>
+      </div>
+      <div class="note-box" style="margin-top:0.75rem;">Cases are organized in a fixed order so that each Case Card's Fact Cards and Witness Lists align correctly. Always draw them as a set and never mix cards from different cases.</div>
+    </div>
+
+    <div id="r3" class="rsec">
+      <div class="rsec-title">How to Play</div>
+      <ul class="steps">
+        <li class="step"><div class="step-n">1</div><div><div class="step-t">Draw a Case Card</div><div class="step-b">Reveal the Case Card. All players read the scenario. This is the shared context and backdrop for the entire case, and the Judge uses it to understand what is being disputed.</div></div></li>
+        <li class="step"><div class="step-n">2</div><div><div class="step-t">Distribute materials</div><div class="step-b">Each side receives their Fact Card and their Witness List. These are private and must not be shown to the opposing side or the Judge until used during arguments.</div><div class="step-note">Exception: the Side Change Chaos Card allows your opponent to view your Witness List.</div></div></li>
+        <li class="step"><div class="step-n">3</div><div><div class="step-t">Preparation phase</div><div class="step-b">Players prepare their arguments independently and in silence. You may argue on the spot without preparation if you prefer. If all three core players agree, you may adopt a specific legal system to apply to the case.</div></div></li>
+        <li class="step"><div class="step-n">4</div><div><div class="step-t">Argument phase</div><div class="step-b">The Claimant argues first, the Defendant second. Each player may call witnesses from their list at any point during their own argument phase. Time limits are optional and must be agreed on before the phase begins.</div><div class="step-note">Witness testimony does not count toward any time limit applied by a Chaos Card.</div></div></li>
+        <li class="step"><div class="step-n">5</div><div><div class="step-t">Chaos Card rolls</div><div class="step-b">While your opponent is arguing, you may roll the die up to 3 times per argument phase to attempt to earn a Chaos Card. See the Chaos Cards section for full rules.</div></div></li>
+        <li class="step"><div class="step-n">6</div><div><div class="step-t">Question Round <span class="opt-badge">Optional</span></div><div class="step-b">After both sides finish arguing, the Judge may ask each side up to 2 questions. Answers must be immediate with no preparation, no notes, no witnesses and no Chaos Cards. Agree before the case begins whether this round is in play.</div><div class="step-note">Each side may decline one question per round with no penalty.</div></div></li>
+        <li class="step"><div class="step-n">7</div><div><div class="step-t">Judge's decision</div><div class="step-b">The Judge deliberates and announces the winner. There are no ties. If a Question Round was played, how each side handled the questions is factored into the verdict.</div></div></li>
+      </ul>
+    </div>
+
+    <div id="r4" class="rsec">
+      <div class="rsec-title">Chaos Cards</div>
+      <p class="rp">Chaos Cards let you disrupt your opponent's argument. They add strategy and unpredictability, but you have to earn them.</p>
+      <div class="rcard">
+        <div class="rcard-t">Rolling for a Chaos Card</div>
+        <div class="die-row">
+          <div class="die-pip">✕</div><div class="die-pip">✕</div><div class="die-pip">✕</div>
+          <div class="die-pip win">⚖</div><div class="die-pip win">⚖</div><div class="die-pip win">⚖</div>
+        </div>
+        <div class="die-legend">3 sides marked ✕ (no card) and 3 marked ⚖ (Chaos Card awarded). Each player may roll up to 3 times per opponent argument phase, with a 15-second cooldown between rolls. The first roll may only happen after your opponent states their first fact.</div>
+      </div>
+      <div class="chaos-grid">
+        <div class="chaos-mini"><div class="chaos-mini-name">Fact Off</div><div class="chaos-mini-body">Choose one fact your opponent stated. That fact is discarded and will not be considered by the Judge.</div></div>
+        <div class="chaos-mini"><div class="chaos-mini-name">Timed Argument</div><div class="chaos-mini-body">Your opponent must finish their remaining argument within 1 to 2 minutes. Witness testimony is excluded.</div></div>
+        <div class="chaos-mini"><div class="chaos-mini-name">Commit</div><div class="chaos-mini-body">Everything your opponent said is discarded. They restart using only 1 fact and 1 witness of their choice.</div></div>
+        <div class="chaos-mini"><div class="chaos-mini-name">Switch</div><div class="chaos-mini-body">Your opponent must now argue to disprove your case rather than prove their own for the rest of their phase.</div></div>
+        <div class="chaos-mini"><div class="chaos-mini-name">Side Change</div><div class="chaos-mini-body">Choose one witness from your opponent's list and move them to your side. If all have testified, flip one to support you instead.</div></div>
+        <div class="chaos-mini"><div class="chaos-mini-name">First Witness is Lying</div><div class="chaos-mini-body">The first witness called is struck from the record. If none called yet, the first on their list is permanently removed.</div></div>
+      </div>
+    </div>
+
+    <div id="r5" class="rsec">
+      <div class="rsec-title">Judging</div>
+      <p class="rp">After both argument phases are complete, the Judge runs the Question Round if in play, then deliberates and delivers a verdict.</p>
+      <div class="qr-box">
+        <div class="qr-title">Question Round (optional)</div>
+        <div class="qr-body">The Judge asks each side up to 2 questions after arguments are done. Answers must be immediate with no preparation, no notes, no witnesses and no Chaos Cards. Each side may decline one question per round with no penalty.</div>
+      </div>
+      <div class="judge-cols">
+        <div class="rcard" style="margin-bottom:0;"><div class="jcol-t">Criteria</div><ul class="jlist"><li>Logic and coherence</li><li>Strength of facts used</li><li>Effective use of witnesses</li><li>Performance under Chaos</li><li>Answers under questioning</li></ul></div>
+        <div class="rcard" style="margin-bottom:0;"><div class="jcol-t">How to decide</div><ul class="jlist"><li>Winner by strongest reasoning</li><li>Winner by survival through chaos</li><li>Winner by best answers under questioning</li><li>The verdict is the Judge's alone</li></ul></div>
+      </div>
+      <div class="sd-box"><div class="sd-title">Sudden Death — if the Judge cannot decide</div><div class="sd-body">There are no ties. If the Judge cannot reach a verdict, a Sudden Death Round is triggered. Each side delivers one final argument in under 30 seconds. The Judge decides immediately based solely on those two statements.</div></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════ DICE ═══════════ -->
+<div id="dice-page" class="page">
+  <div class="page-header">
+    <button class="back-btn" onclick="goTo('home')">← Back</button>
+    <div class="page-title">Roll the Dice</div>
+  </div>
+  <div class="dice-wrap">
+
+    <div>
+      <div class="rolls-label">Rolls remaining this phase</div>
+      <div class="roll-dots">
+        <div class="roll-dot" id="d0"></div>
+        <div class="roll-dot" id="d1"></div>
+        <div class="roll-dot" id="d2"></div>
+      </div>
+    </div>
+
+    <button class="die-btn" id="die-btn" onclick="rollDice()">
+      <div class="die-face-symbol" id="die-symbol">🎲</div>
+      <div class="die-face-text" id="die-hint">Tap to roll</div>
+    </button>
+
+    <div class="cooldown-wrap">
+      <div class="cooldown-track"><div class="cooldown-fill" id="cd-fill"></div></div>
+      <div class="cooldown-txt" id="cd-txt"></div>
+    </div>
+
+    <div class="dice-result" id="dice-result">
+      <div class="dice-result-main res-empty">Roll to find out</div>
+    </div>
+
+    <button class="new-round-btn" onclick="resetDice()">New argument phase</button>
+  </div>
+</div>
+
+<!-- ═══════════ CHAOS CARDS ═══════════ -->
+<div id="chaos-page" class="page">
+  <div class="page-header">
+    <button class="back-btn" onclick="goTo('home')">← Back</button>
+    <div class="page-title">Chaos Cards</div>
+  </div>
+  <div class="chaos-wrap">
+    <div class="who-label">Who are you this round?</div>
+    <div class="side-btns">
+      <button class="side-btn on" id="sb-claimant" onclick="setSide('claimant')">Claimant</button>
+      <button class="side-btn" id="sb-defendant" onclick="setSide('defendant')">Defendant</button>
+    </div>
+
+    <div class="deck-status" id="deck-status">Tap the card to draw</div>
+
+    <div class="card-scene" id="card-scene" onclick="drawChaos()">
+      <div class="card-inner" id="card-inner">
+        <div class="c-face c-back">
+          <div class="c-back-stripes"></div>
+          <div class="c-back-inner">
+            <div class="c-back-gavel">⚖️</div>
+            <div class="c-back-logo">LEGIT<br>CASE</div>
+            <div class="c-back-tape">CHAOS CARDS</div>
+          </div>
+          <div class="c-back-border"></div>
+        </div>
+        <div class="c-face c-front">
+          <div class="c-front-stripes"></div>
+          <div class="c-header"><div class="c-chaos-label">CHAOS</div></div>
+          <div class="c-body">
+            <div class="c-name" id="c-name"></div>
+            <div class="c-effect" id="c-effect"></div>
+          </div>
+          <div class="c-front-border"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cards-left" id="cards-left">6 cards remaining</div>
+    <button class="draw-next-btn" id="draw-next-btn" onclick="flipBack()">Draw another ›</button>
+    <button class="reset-decks-btn" onclick="resetDecks()">Reset both decks (new case)</button>
+    <div class="chaos-sub">Each side has their own deck. No repeats until all 6 are drawn.</div>
+  </div>
+</div>
+
+<script>
+/* ─── DATA ─── */
+const CARDS = [
+  { name:"Fact Off", effect:"Choose one fact your opponent stated during their argument. That fact is discarded and will not be considered by the Judge." },
+  { name:"Timed Argument", effect:"Your opponent must finish their remaining argument within 1 to 2 minutes. Witness testimony time is excluded from this limit." },
+  { name:"Commit", effect:"Everything your opponent has said so far is discarded. They must restart their argument from the beginning using only 1 fact and 1 witness of their choice." },
+  { name:"Switch", effect:"Your opponent must now argue to disprove your case rather than prove their own, for the remainder of their argument phase." },
+  { name:"Side Change", effect:"You may view your opponent's full Witness List and choose one witness to move to your side. If all witnesses have already testified, choose one who testified and flip their testimony to support your case." },
+  { name:"First Witness is Lying", effect:"The testimony of the first witness your opponent called is struck from the record. If no witness has been called yet, the first witness on their list is permanently removed and cannot testify." }
+];
+
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length-1; i > 0; i--) {
+    const j = Math.floor(Math.random()*(i+1));
+    [a[i],a[j]] = [a[j],a[i]];
+  }
+  return a;
+}
+
+/* ─── NAVIGATION ─── */
+function goTo(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo(0,0);
+}
+
+/* ─── RULES ─── */
+function showR(id, btn) {
+  document.querySelectorAll('.rsec').forEach(s => s.classList.remove('on'));
+  document.querySelectorAll('.rnav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('on');
+  btn.classList.add('active');
+  btn.scrollIntoView({behavior:'smooth', block:'nearest', inline:'center'});
+}
+
+/* ─── DICE ─── */
+let dRolls = 3;
+let dCooldown = false;
+let dInterval = null;
+let dLocked = false;
+
+function updateDots() {
+  for (let i = 0; i < 3; i++) {
+    document.getElementById('d'+i).classList.toggle('used', i >= dRolls);
+  }
+}
+
+function rollDice() {
+  if (dLocked || dCooldown || dRolls <= 0) return;
+
+  dRolls--;
+  updateDots();
+  dLocked = true;
+
+  const btn = document.getElementById('die-btn');
+  const sym = document.getElementById('die-symbol');
+  const hint = document.getElementById('die-hint');
+  const result = document.getElementById('dice-result');
+
+  btn.classList.add('shake');
+  setTimeout(() => btn.classList.remove('shake'), 400);
+
+  const win = Math.random() < 0.5;
+
+  setTimeout(() => {
+    if (win) {
+      sym.textContent = '⚖️';
+      hint.textContent = 'Scale!';
+      result.innerHTML = '<div class="dice-result-main res-yes">Chaos Card earned!</div><button class="go-chaos-btn" onclick="goTo(\'chaos-page\')">Draw your card ›</button>';
+    } else {
+      sym.textContent = '✕';
+      hint.textContent = 'No card';
+      result.innerHTML = '<div class="dice-result-main res-no">No Chaos Card</div>';
+    }
+
+    if (dRolls <= 0) {
+      btn.classList.add('disabled');
+      hint.textContent = 'No rolls left';
+      dLocked = false;
+      return;
+    }
+
+    dCooldown = true;
+    btn.classList.add('disabled');
+    hint.textContent = 'Wait...';
+
+    let elapsed = 0;
+    const total = 15;
+    const fill = document.getElementById('cd-fill');
+    const txt = document.getElementById('cd-txt');
+    fill.style.width = '100%';
+
+    if (dInterval) clearInterval(dInterval);
+    dInterval = setInterval(() => {
+      elapsed += 0.1;
+      const pct = Math.max(0, 100 - (elapsed/total*100));
+      fill.style.width = pct + '%';
+      txt.textContent = Math.ceil(total - elapsed) + 's cooldown';
+      if (elapsed >= total) {
+        clearInterval(dInterval);
+        fill.style.width = '0%';
+        txt.textContent = '';
+        dCooldown = false;
+        dLocked = false;
+        btn.classList.remove('disabled');
+        hint.textContent = 'Tap to roll';
+      }
+    }, 100);
+
+  }, 200);
+}
+
+function resetDice() {
+  dRolls = 3;
+  dCooldown = false;
+  dLocked = false;
+  if (dInterval) clearInterval(dInterval);
+  updateDots();
+  const btn = document.getElementById('die-btn');
+  btn.classList.remove('disabled');
+  document.getElementById('die-symbol').textContent = '🎲';
+  document.getElementById('die-hint').textContent = 'Tap to roll';
+  document.getElementById('dice-result').innerHTML = '<div class="dice-result-main res-empty">Roll to find out</div>';
+  document.getElementById('cd-fill').style.width = '0%';
+  document.getElementById('cd-txt').textContent = '';
+}
+
+/* ─── CHAOS CARDS ─── */
+let decks = { claimant: shuffle([...CARDS]), defendant: shuffle([...CARDS]) };
+let currentSide = 'claimant';
+let isFlipped = false;
+let isAnimating = false;
+
+function setSide(side) {
+  if (isFlipped) flipBack(true);
+  currentSide = side;
+  document.getElementById('sb-claimant').classList.toggle('on', side === 'claimant');
+  document.getElementById('sb-defendant').classList.toggle('on', side === 'defendant');
+  updateDeckUI();
+}
+
+function updateDeckUI() {
+  const rem = decks[currentSide].length;
+  document.getElementById('cards-left').textContent = rem + ' card' + (rem !== 1 ? 's' : '') + ' remaining';
+  const scene = document.getElementById('card-scene');
+  if (rem === 0) {
+    scene.classList.add('empty');
+    document.getElementById('deck-status').textContent = 'Deck empty — reset to continue';
+  } else {
+    scene.classList.remove('empty');
+    document.getElementById('deck-status').textContent = 'Tap the card to draw';
+  }
+}
+
+function drawChaos() {
+  if (isFlipped || isAnimating || decks[currentSide].length === 0) return;
+  isAnimating = true;
+
+  const card = decks[currentSide].pop();
+  document.getElementById('c-name').textContent = card.name;
+  document.getElementById('c-effect').textContent = card.effect;
+
+  document.querySelector('.c-back').classList.add('hidden');
+  document.querySelector('.c-front').classList.add('visible');
+  isFlipped = true;
+
+  document.getElementById('draw-next-btn').style.display = 'inline-block';
+  updateDeckUI();
+
+  setTimeout(() => { isAnimating = false; }, 400);
+}
+
+function flipBack(instant) {
+  if (!isFlipped) return;
+  isAnimating = true;
+  document.querySelector('.c-back').classList.remove('hidden');
+  document.querySelector('.c-front').classList.remove('visible');
+  document.getElementById('draw-next-btn').style.display = 'none';
+  isFlipped = false;
+  setTimeout(() => { isAnimating = false; }, instant ? 0 : 400);
+}
+
+function resetDecks() {
+  decks = { claimant: shuffle([...CARDS]), defendant: shuffle([...CARDS]) };
+  flipBack(true);
+  updateDeckUI();
+}
+
+/* ─── INIT ─── */
+updateDots();
+updateDeckUI();
+</script>
+</body>
+</html>
